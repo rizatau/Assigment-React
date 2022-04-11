@@ -1,5 +1,5 @@
 /* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,700;1,600&display=swap');
 
 /* Global Styling */
 * {
@@ -7,8 +7,24 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
 }
-  
+
+/* Some Variable */
+:root{
+    --main-color: #ff2c1f;
+    --text-color: #020307;
+    --bg-color: #fff;
+}
+
+body{
+    background: var(--text-color) ;
+    color: var(--bg-color);
+}
+
 /* Remove default margin */
 body,
 h1,
@@ -21,45 +37,167 @@ p,
 figure,
 blockquote,
 dl,
-dd {
+dd,
+ul,
+li {
 margin: 0;
 }
-  
-li{
-    list-style: none;
-}
 
-
-.main-header{
-    /* position: fixed; */
-    height: 3rem;
-    width: 100vw;
-    background: rgba(20, 20, 20, 0.2);
-
-    
-}
-
-.navbar-nav{
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
     display: flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 100px;
+    transition: 0.5s;
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
-.ul-menu{
+.logo{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+.logo .bx{
+    font-size: 24;
+    color: var(--main-color);
+}
+
+.main-menu{
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    gap: 5rem;
+}
+
+
+
+.main-menu li{
+    position: relative;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--bg-color);
+}
+
+.main-menu li::after{
+    content: "";
+    width: 0%;
+    height: 2px;
+    background-color: var(--main-color);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: 0.3s all linear;
+}
+
+.main-menu li:hover::after, .main-menu .menu-active::after{
+    width: 100%;
+}
+
+.add-btn{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    font-weight: 400;
+    border-radius: 0.5rem;
+    background: var(--main-color);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ;
+}
+
+.add-btn-active{
+    visibility: visible;
+    opacity: 1;
+}
+
+#menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000001;
+    display: none;
+}
+
+.add-btn, .bx, #home-icon, .main-menu li {
+    cursor: pointer;
+}
+.add-movie-cont{
+    /* display: none; */
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(34, 54, 233, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    align-items: center;
+    z-index: 1000000000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ;
+    font-size: 24px;
+    overflow-y: hidden;
 }
-.navbar-logo{
- width: 8em;       
+
+.add-movie-cont-active{
+    visibility: visible;
+    opacity: 1;
+}
+
+.form-container {
+    background-color: var(--text-color);
+    width: 40%;
+    border-radius: 1rem;
+}
+
+.add-movie-form{
+    margin: 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 16px;
+}
+
+input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 5px 0 5px 20px;
+    border: 1px solid #999;
+}
+
+.form-container .bx{
+    position: relative;
+    float: right;
+	color: var(--main-color);
+    top: 10px;
+    right: 10px;
 }
 .container{
+    padding-top: 100px;
     max-width: 80rem;
     margin-inline: auto;
     padding-inline: 2rem;
 }
-
-
 
 /* MOVIE CARD STYLING */
 .movie-grid{
@@ -74,6 +212,10 @@ li{
     margin-bottom: 2rem;
 }
 
+.movie-header{
+    display: flex;
+    gap: 0.5rem;
+}
 .poster{
     width: 100%;
     aspect-ratio: 474 / 711;

@@ -7,11 +7,13 @@ import './App.css';
 function App() {
   
   const [ menu, setMenu ] = useState('home');
-
+  const [ viewForm , setViewForm] = useState('');
+  
+  console.log(useState);
   return (
     <div>
-      <NavBar setMenu={setMenu}/>
-      { menu === 'home' ? <Home /> : (menu === 'movies') ? <MovieListingPage /> : <Home /> }
+      <NavBar setMenu={setMenu} setViewForm={setViewForm} menu={menu}/>
+      { menu === 'home' ? <Home /> : (menu === 'movies') ? <MovieListingPage viewForm={viewForm} setViewForm={setViewForm}/> : <Home /> }
     </div>
   );
 }

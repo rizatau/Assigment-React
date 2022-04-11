@@ -3,7 +3,7 @@ import { fetchApi } from '../api';
 import Button from './Button';
 import InputField from './InputField';
 
-export default function AddMovie({ setMovies }) {
+export default function AddMovie({ setMovies, viewForm , setViewForm}) {
   const [ newMovie, setNewMovie ] = useState(
     {
         _id : '',
@@ -31,6 +31,7 @@ export default function AddMovie({ setMovies }) {
   const saveMovie = (e) => {
       e.preventDefault();
       saveData();
+      setViewForm('')
   }
 
    const saveData = async() => {
@@ -55,24 +56,18 @@ export default function AddMovie({ setMovies }) {
   }
 
   return (
-    <div>
+    <div className={`add-movie-cont ${viewForm === 'active' ? 'add-movie-cont-active': ''}`}>
       <div className='form-container'>
+        <i onClick={()=>setViewForm('')} className='bx bxs-x-circle bx-burst' ></i>
         <form className='add-movie-form'>
             <InputField id='title' value={newMovie.title} inputType='text' className='input-field' placeHolder='Movie Title' onChange={handleChangeInput} />
             <InputField id='year' value={newMovie.year} inputType='number' className='input-field' placeHolder='Year' onChange={handleChangeInput} />
             <InputField id='desc' value={newMovie.desc} inputType='text' className='input-field' placeHolder='Description' onChange={handleChangeInput} />
-            <InputField id='poster' value={newMovie.poster} inputType='text' className='input-field' placeHolder='poster' onChange={handleChangeInput} />
+            <InputField id='poster' value={newMovie.poster} inputType='text' className='input-field' placeHolder='Poster url' onChange={handleChangeInput} />
             <InputField id='casts' value={newMovie.casts} inputType='text' className='input-field' placeHolder='Movie casts (split with comma)' onChange={handleChangeInput} />
             <Button className='add-movie-btn' iconClass='' btnLabel='SAVE MOVIE' onClick={saveMovie}/>
         </form>
       </div>
-      <div>
-        <Button className='close-add-form' iconClass='fa-circle-xmark' btnLabel='Close' />
-        <i className="fas fa-plus"></i>
-        <i className="fas fa-plus"></i>
-        
-
-        </div>
     </div>
   )
 }

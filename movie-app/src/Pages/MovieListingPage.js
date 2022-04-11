@@ -3,7 +3,7 @@ import { fetchApi } from '../api';
 import AddMovie from '../Components/AddMovie';
 import MovieList from '../Components/MovieList';
 
-export default function MovieListingPage() {
+export default function MovieListingPage({viewForm,setViewForm}) {
   const [ movies, setMovies ] = useState([]);
 
   useEffect(() => {
@@ -23,9 +23,11 @@ export default function MovieListingPage() {
   }
 
   return (
-    <div className='container'>
-        <AddMovie setMovies={setMovies} />
-        <MovieList movies={movies} setMovies={setMovies}/>
+    <div> 
+      <AddMovie setMovies={setMovies} viewForm={viewForm} setViewForm={setViewForm}/>
+      <div className='container'>
+          <MovieList movies={movies} setMovies={setMovies}/>
+      </div>
     </div>
   )
 }

@@ -8,9 +8,8 @@ import { fetchApi } from '../api'
 export default function MovieCard({movie,viewDetail,viewRating, setMovies}) {
     
     const handleClickDelete = (e) => {
-        e.preventDefault()
         remove()
-      }  
+    }  
     
     const remove = async () => {
         try {
@@ -34,16 +33,16 @@ export default function MovieCard({movie,viewDetail,viewRating, setMovies}) {
             <ImageMedia id={movie._id} className='poster' imgUrl={movie.poster} />
             <div className="movie-body">
                 <div className="movie-header">
-                    <Heading title={movie.title} className='mov-title' />
-                    <Heading title={movie.year} className='mov-year' />
+                    <Heading title={`${movie.title}  (${movie.year})`} className='mov-title' />
+                    {/* <Heading title={`(${movie.year})`} className='mov-year' /> */}
                 </div>
                 <List divClass='casts-box' ulClass='cast-list' list={movie.casts} liClass='the-cast'/>
                 <div className="movie-desc-box">
                     <Paragraph content={movie.desc} className='movie-desc'/>
                 </div>
                 <div className="movie-btn">
-                    <Button className='mov-detail-btn' onClick={viewDetail} btnLabel='detail' iconClass=''/>
-                    <Button className='mov-rating' onClick={viewRating} btnLabel='rate' iconClass=''/>
+                    {/* <Button className='mov-detail-btn' onClick={viewDetail} btnLabel='detail' iconClass=''/>
+                    <Button className='mov-rating' onClick={viewRating} btnLabel='rate' iconClass=''/> */}
                 </div> 
                     <Button className='mov-delete' onClick={handleClickDelete} btnLabel='delete' iconClass=''/>
                 
