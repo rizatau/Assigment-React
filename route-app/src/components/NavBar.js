@@ -17,8 +17,7 @@ export default function NavBar({ }) {
           <li><Link className='menu-link' to="/product">Product</Link></li>
         </ul>
         <div className='login-menu'>
-          <Link className='menu-link' to="/login">Login</Link>
-          <Heading className='menu-link' title='Sign Out' onClick={handleSignOut}/>
+          {!localStorage.getItem('token') ? <Link className='menu-link' to="/login">Login</Link> : <Heading className='menu-link' title='Sign Out' onClick={handleSignOut}/> }
         </div>
       </header>
     </div>

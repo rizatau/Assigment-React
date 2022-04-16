@@ -28,10 +28,14 @@ export default function LoginForm({ }) {
       }
     });
     const data = await response.json();
-    // console.log(data);
+    // console.log(location);
     localStorage.setItem("token", data.token);
-    // console.log(location.state.from.pathname);
-    navigate(`${location.state.from.pathname}`)
+    if (location.state === null){
+      navigate(`/`)
+    } else{
+      navigate(`${location.state.from.pathname}`)
+    }
+    
   }
  
   return (
