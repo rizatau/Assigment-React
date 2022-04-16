@@ -1,7 +1,12 @@
 import Heading from './Heading';
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 
 export default function NavBar({ }) {
+  const navigate = useNavigate()
+  const handleSignOut = ()=>{
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
 
   return (
     <div>
@@ -13,7 +18,7 @@ export default function NavBar({ }) {
         </ul>
         <div className='login-menu'>
           <Link className='menu-link' to="/login">Login</Link>
-          <Heading className='menu-link' title='Sign Out'/>
+          <Heading className='menu-link' title='Sign Out' onClick={handleSignOut}/>
         </div>
       </header>
     </div>
