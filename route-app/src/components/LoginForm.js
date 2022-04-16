@@ -29,8 +29,8 @@ export default function LoginForm({ }) {
     });
     const data = await response.json();
     // console.log(data);
-    // localStorage.setItem("token", data.token);
-    console.log(location.state.from.pathname);
+    localStorage.setItem("token", data.token);
+    // console.log(location.state.from.pathname);
     navigate(`${location.state.from.pathname}`)
   }
  
